@@ -52,7 +52,11 @@ public class AdmDashboard extends javax.swing.JFrame {
         ImageIcon scaleIcon4 = new ImageIcon(imgScale4);
         manageCourseImage.setIcon(scaleIcon4);
         
-         
+        ImageIcon icon5 = new ImageIcon(getClass().getResource("/newpackage/pk/images/academicM.png"));
+        Image img5 = icon5.getImage();
+        Image imgScale5 = img5.getScaledInstance(manageCourseImage.getWidth(), manageCourseImage.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaleIcon5 = new ImageIcon(imgScale5);
+        manageAcademicImage.setIcon(scaleIcon5); 
         
         
     }
@@ -79,6 +83,8 @@ public class AdmDashboard extends javax.swing.JFrame {
         MCoursesButton = new javax.swing.JButton();
         manageCourseImage = new javax.swing.JLabel();
         MDegreesButton = new javax.swing.JButton();
+        MAcademicButton = new javax.swing.JButton();
+        manageAcademicImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,12 +140,35 @@ public class AdmDashboard extends javax.swing.JFrame {
 
         MBranchesButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         MBranchesButton.setText("Manage Branches");
+        MBranchesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MBranchesButtonActionPerformed(evt);
+            }
+        });
 
         MCoursesButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         MCoursesButton.setText("Manage Courses");
+        MCoursesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MCoursesButtonActionPerformed(evt);
+            }
+        });
 
         MDegreesButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         MDegreesButton.setText("Manage Degrees");
+        MDegreesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MDegreesButtonActionPerformed(evt);
+            }
+        });
+
+        MAcademicButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        MAcademicButton.setText("Academic management");
+        MAcademicButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MAcademicButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -148,6 +177,10 @@ public class AdmDashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(manageAcademicImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(MAcademicButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(manageCourseImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -176,25 +209,31 @@ public class AdmDashboard extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(manageUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(MBranchesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(manageBranchImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(MDegreesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(manageDegreeImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(MCoursesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(manageCourseImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(MAcademicButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(manageAcademicImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,6 +268,26 @@ public class AdmDashboard extends javax.swing.JFrame {
         
         new ManageUsers().setVisible(true);
     }//GEN-LAST:event_MUsersButtonActionPerformed
+
+    private void MBranchesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBranchesButtonActionPerformed
+        // TODO add your handling code here:
+        new ManageBranches().setVisible(true);
+    }//GEN-LAST:event_MBranchesButtonActionPerformed
+
+    private void MDegreesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MDegreesButtonActionPerformed
+        // TODO add your handling code here:
+        new ManageDegrees().setVisible(true);
+    }//GEN-LAST:event_MDegreesButtonActionPerformed
+
+    private void MCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCoursesButtonActionPerformed
+        // TODO add your handling code here:
+        new ManageCourses().setVisible(true);
+    }//GEN-LAST:event_MCoursesButtonActionPerformed
+
+    private void MAcademicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAcademicButtonActionPerformed
+        // TODO add your handling code here:
+        new AcademicMDashboard().setVisible(true);
+    }//GEN-LAST:event_MAcademicButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +328,7 @@ public class AdmDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton MAcademicButton;
     private javax.swing.JButton MBranchesButton;
     private javax.swing.JButton MCoursesButton;
     private javax.swing.JButton MDegreesButton;
@@ -278,6 +338,7 @@ public class AdmDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel manageAcademicImage;
     private javax.swing.JLabel manageBranchImage;
     private javax.swing.JLabel manageCourseImage;
     private javax.swing.JLabel manageDegreeImage;

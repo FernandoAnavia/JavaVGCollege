@@ -623,7 +623,6 @@ public class ManageUsers extends javax.swing.JFrame {
                     "UPDATE vgccollege." + userTypeStr + " SET firstName=?, lastName=?, contactNumber=?, email=?, address=?, DOB=?, BranchId=?, loginPassword=?, DegreeId=? WHERE StudentId=?";                        
 
             PreparedStatement pst = conn.prepareStatement(mySQLQuery);
-            pst.setString(10, userTypeStr);
            
             pst.setString(10, userIDStr);
             pst.setString(1, firstNameStr);
@@ -653,7 +652,6 @@ public class ManageUsers extends javax.swing.JFrame {
                     "UPDATE vgccollege." + userTypeStr + " SET firstName=?, lastName=?, contactNumber=?, email=?, address=?, DOB=?, BranchId=?, loginPassword=? WHERE LecturerId=?";                        
 
             PreparedStatement pst = conn.prepareStatement(mySQLQuery);
-            pst.setString(9, userTypeStr);
            
             pst.setString(9, userIDStr);
             pst.setString(1, firstNameStr);
@@ -681,8 +679,7 @@ public class ManageUsers extends javax.swing.JFrame {
                     "UPDATE vgccollege." + userTypeStr + " SET firstName=?, lastName=?, contactNumber=?, email=?, address=?, DOB=?, BranchId=?, loginPassword=? WHERE AdminId=?";                        
 
             PreparedStatement pst = conn.prepareStatement(mySQLQuery);
-            pst.setString(9, userTypeStr);
-           
+            
             pst.setString(9, userIDStr);
             pst.setString(1, firstNameStr);
             pst.setString(2, lastNameStr);
