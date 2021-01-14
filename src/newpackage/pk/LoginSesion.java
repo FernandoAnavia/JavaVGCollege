@@ -14,6 +14,9 @@ public class LoginSesion {
     public static String UID;
     public static String fullUserName;
     public static String Usertype;
+    public static String courseIdSaved;
+    public static String semesterIdSaved;
+    public static  String currentGroup;
     /*public static String firstName;
     public static String lastName;
     public static String contactNumber;

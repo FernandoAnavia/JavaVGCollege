@@ -69,7 +69,6 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         createBtn1 = new javax.swing.JButton();
-        updateBtn1 = new javax.swing.JButton();
         deleteBtn1 = new javax.swing.JButton();
         clearBtn1 = new javax.swing.JButton();
         exitBtn1 = new javax.swing.JButton();
@@ -83,12 +82,11 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         createBtn2 = new javax.swing.JButton();
-        updateBtn2 = new javax.swing.JButton();
         deleteBtn2 = new javax.swing.JButton();
         clearBtn2 = new javax.swing.JButton();
         exitBtn2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableBD2 = new javax.swing.JTable();
+        tableLC = new javax.swing.JTable();
         lCComboLId = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         lCComboCId = new javax.swing.JComboBox();
@@ -325,14 +323,6 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             }
         });
 
-        updateBtn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        updateBtn1.setText("Update");
-        updateBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtn1ActionPerformed(evt);
-            }
-        });
-
         deleteBtn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         deleteBtn1.setText("Delete");
         deleteBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -406,18 +396,16 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                             .addComponent(sCComboSemId, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(showUsersBtn1))
                 .addGap(93, 93, 93)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(panelSCLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(createBtn1)
-                .addGap(51, 51, 51)
-                .addComponent(updateBtn1)
-                .addGap(50, 50, 50)
+                .addGap(47, 47, 47)
                 .addComponent(deleteBtn1)
                 .addGap(42, 42, 42)
                 .addComponent(clearBtn1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -447,7 +435,6 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                         .addGap(79, 107, Short.MAX_VALUE)))
                 .addGroup(panelSCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn1)
-                    .addComponent(updateBtn1)
                     .addComponent(deleteBtn1)
                     .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearBtn1))
@@ -478,14 +465,6 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             }
         });
 
-        updateBtn2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        updateBtn2.setText("Update");
-        updateBtn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtn2ActionPerformed(evt);
-            }
-        });
-
         deleteBtn2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         deleteBtn2.setText("Delete");
         deleteBtn2.addActionListener(new java.awt.event.ActionListener() {
@@ -510,7 +489,7 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             }
         });
 
-        tableBD2.setModel(new javax.swing.table.DefaultTableModel(
+        tableLC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -521,7 +500,7 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tableBD2);
+        jScrollPane3.setViewportView(tableLC);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Semester ID");
@@ -551,18 +530,16 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                                     .addComponent(lCComboLId, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lCComboCId, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(91, 91, 91)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(PanelLCLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(createBtn2)
-                .addGap(51, 51, 51)
-                .addComponent(updateBtn2)
-                .addGap(50, 50, 50)
+                .addGap(46, 46, 46)
                 .addComponent(deleteBtn2)
                 .addGap(42, 42, 42)
                 .addComponent(clearBtn2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -592,7 +569,6 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addGroup(PanelLCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn2)
-                    .addComponent(updateBtn2)
                     .addComponent(deleteBtn2)
                     .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearBtn2))
@@ -656,32 +632,42 @@ public class AcademicMDashboard extends javax.swing.JFrame {
 
     private void lCBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lCBtnActionPerformed
         // TODO add your handling code here:
+        lCBtn.setEnabled(false);
+        semesterBtn.setEnabled(true);
+        sCBtn.setEnabled(true);
         PanelLC.setVisible(true);
         panelSemester.setVisible(false);
         panelSC.setVisible(false);
         
        emptyCombos();
-       fillCombos();
+       fillComboLC();
+       
     }//GEN-LAST:event_lCBtnActionPerformed
 
     private void semesterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semesterBtnActionPerformed
         // TODO add your handling code here:
+        semesterBtn.setEnabled(false);
+        lCBtn.setEnabled(true);
+        sCBtn.setEnabled(true);
         panelSemester.setVisible(true);
         PanelLC.setVisible(false);
         panelSC.setVisible(false);
+
         
-        emptyCombos();
-        fillCombos();
     }//GEN-LAST:event_semesterBtnActionPerformed
 
     private void sCBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sCBtnActionPerformed
         // TODO add your handling code here:
+        sCBtn.setEnabled(false);
+        semesterBtn.setEnabled(true);
+        lCBtn.setEnabled(true);
         panelSC.setVisible(true);
         panelSemester.setVisible(false);
         PanelLC.setVisible(false);
         
        emptyCombos();
-       fillCombos();
+       fillComboSC();
+       fillComboLC();
         
     }//GEN-LAST:event_sCBtnActionPerformed
 
@@ -697,11 +683,9 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         }
         
     
-        private void fillCombos(){
+        private void fillComboSC(){
         try {
-           String sqlLId = "SELECT LecturerId from vgccollege.Lecturer";
-           String sqlCId = "SELECT CourseId from vgccollege.Course";
-           String sqlSemId = "SELECT SemesterId from vgccollege.semester";
+
            String sqlStId = "SELECT StudentId from vgccollege.Student"; 
             
             Connection conn = MySQLConnection.getConnection();
@@ -709,6 +693,32 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             PreparedStatement pstSt = conn.prepareStatement(sqlStId);
             ResultSet rsSt = pstSt.executeQuery();
             
+            
+            while (rsSt.next()){
+                String StCombo = rsSt.getString("StudentId");
+                sCComboSId.addItem(StCombo); 
+                
+            }
+            
+            
+            sCComboSId.setSelectedIndex(0);
+
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+        
+        private void fillComboLC(){
+        try {
+           String sqlLId = "SELECT LecturerId from vgccollege.Lecturer";
+           String sqlCId = "SELECT CourseId from vgccollege.Course";
+           String sqlSemId = "SELECT SemesterId from vgccollege.semester";
+
+            
+            Connection conn = MySQLConnection.getConnection();
+                      
             PreparedStatement pstLec = conn.prepareStatement(sqlLId);
             ResultSet rsLec = pstLec.executeQuery();
             
@@ -717,12 +727,7 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             
             PreparedStatement pstS = conn.prepareStatement(sqlSemId);
             ResultSet rsSemId = pstS.executeQuery();
-            
-            while (rsSt.next()){
-                String StCombo = rsSt.getString("StudentId");
-                sCComboSId.addItem(StCombo); 
-                
-            }
+
             
             while (rsLec.next()){
                 String LectCombo = rsLec.getString("LecturerId");
@@ -738,8 +743,8 @@ public class AcademicMDashboard extends javax.swing.JFrame {
                 String SemCombo = rsSemId.getString("SemesterId");
                 lCComboSId.addItem(SemCombo);               
             }
-            ;
-            sCComboSId.setSelectedIndex(0);
+            
+
             lCComboLId.setSelectedIndex(-1);
             lCComboCId.setSelectedIndex(-1);
             lCComboSId.setSelectedIndex(-1);
@@ -748,7 +753,8 @@ public class AcademicMDashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+        
+        
     
     
     private void showUsersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUsersBtnActionPerformed
@@ -913,10 +919,10 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
                 try (Connection conn = MySQLConnection.getConnection()){
 
-            String sql = "SELECT * FROM vgccollege.Semester";
+            String sql = "SELECT A.StudentId, S.firstName, S.lastName, A.CourseId, C.courseName, A.SemesterId, Sem.sDescription FROM vgccollege.StudentCourse A, vgccollege.Student S, vgccollege.Course C, vgccollege.Semester Sem WHERE S.StudentId = A.StudentId and C.CourseId = A.CourseId and Sem.SemesterId = A.SemesterId";
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            tableBD.setModel(DbUtils.resultSetToTableModel(rs));
+            tableSC.setModel(DbUtils.resultSetToTableModel(rs));
 
         }catch (Exception exception) {
 
@@ -957,16 +963,49 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createBtn1ActionPerformed
 
-    private void updateBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateBtn1ActionPerformed
-
     private void deleteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn1ActionPerformed
         // TODO add your handling code here:
+        int confirmation = JOptionPane.showConfirmDialog(null, "Are your sure you want to delete the Student Relation?","Warning", JOptionPane.YES_NO_OPTION);
+
+        if (confirmation == 0)
+
+        {
+
+            try (Connection conn = MySQLConnection.getConnection()){
+
+                String sqlDel =
+                "DELETE FROM vgccollege.StudentCourse" + " WHERE StudentId =? and CourseId = ? and SemesterId = ?";
+
+                PreparedStatement pst = conn.prepareStatement(sqlDel);
+                pst.setString(1, sCComboSId.getSelectedItem().toString());
+                pst.setString(2, sCComboCId.getSelectedItem().toString());
+                pst.setString(3, sCComboSemId.getSelectedItem().toString());
+                int i = pst.executeUpdate();
+                pst.executeUpdate();
+
+                if(i>0){
+                    JOptionPane.showMessageDialog(null, "Student Relation deleted successfully");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Student Relation not found");
+                }
+
+            }catch(Exception exception) {
+
+                JOptionPane.showMessageDialog(null, exception);
+                exception.printStackTrace();
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "The Student Relation wasn't deleted");
+        }
     }//GEN-LAST:event_deleteBtn1ActionPerformed
 
     private void clearBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtn1ActionPerformed
         // TODO add your handling code here:
+        sCComboCId.setSelectedIndex(-1);
+        sCComboCId.setSelectedIndex(-1);
+        sCComboSemId.setSelectedIndex(-1);
+        
     }//GEN-LAST:event_clearBtn1ActionPerformed
 
     private void exitBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtn1ActionPerformed
@@ -976,22 +1015,96 @@ public class AcademicMDashboard extends javax.swing.JFrame {
 
     private void showUsersBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUsersBtn2ActionPerformed
         // TODO add your handling code here:
+        
+        try (Connection conn = MySQLConnection.getConnection()){
+
+            String sql = "SELECT A.LecturerId, S.firstName, S.lastName, A.CourseId, C.courseName, A.SemesterId, Sem.sDescription FROM vgccollege.LecturerCourse A, vgccollege.Lecturer S, vgccollege.Course C, vgccollege.Semester Sem WHERE S.LecturerId = A.LecturerId and C.CourseId = A.CourseId and Sem.SemesterId = A.SemesterId";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            tableLC.setModel(DbUtils.resultSetToTableModel(rs));
+
+        }catch (Exception exception) {
+
+            JOptionPane.showMessageDialog(null, exception);
+            exception.printStackTrace();
+        }
     }//GEN-LAST:event_showUsersBtn2ActionPerformed
 
     private void createBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createBtn2ActionPerformed
+        
+        String stIdSt = lCComboLId.getSelectedItem().toString();
+        String cIdSt = lCComboCId.getSelectedItem().toString();
+        String semtIdSt = lCComboSId.getSelectedItem().toString();
+        String empty = "";
+        
+        
+        try (Connection conn = MySQLConnection.getConnection()){
 
-    private void updateBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateBtn2ActionPerformed
+            String mySQLQuery =
+            "INSERT INTO vgccollege.LecturerCourse" + "(LecturerId, CourseId, SemesterId, concatValue)"
+            + "VALUES (?,?,?,?)";
+
+            PreparedStatement pst = conn.prepareStatement(mySQLQuery);
+
+            pst.setString(1, stIdSt);
+            pst.setString(2, cIdSt);
+            pst.setString(3, semtIdSt);
+            pst.setString(4, empty);
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "New relation created successfully");
+
+        }catch (Exception exception) {
+
+            JOptionPane.showMessageDialog(null, exception);
+            exception.printStackTrace();
+
+        }
+    }//GEN-LAST:event_createBtn2ActionPerformed
 
     private void deleteBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn2ActionPerformed
         // TODO add your handling code here:
+                int confirmation = JOptionPane.showConfirmDialog(null, "Are your sure you want to delete the Lecturer Relation?","Warning", JOptionPane.YES_NO_OPTION);
+
+        if (confirmation == 0)
+
+        {
+
+            try (Connection conn = MySQLConnection.getConnection()){
+
+                String sqlDel =
+                "DELETE FROM vgccollege.LecturerCourse" + " WHERE LecturerId =? and CourseId = ? and SemesterId = ?";
+
+                PreparedStatement pst = conn.prepareStatement(sqlDel);
+                pst.setString(1, lCComboLId.getSelectedItem().toString());
+                pst.setString(2, lCComboCId.getSelectedItem().toString());
+                pst.setString(3, lCComboSId.getSelectedItem().toString());
+                int i = pst.executeUpdate();
+                pst.executeUpdate();
+
+                if(i>0){
+                    JOptionPane.showMessageDialog(null, "Lecturer Relation deleted successfully");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lecturer Relation not found");
+                }
+
+            }catch(Exception exception) {
+
+                JOptionPane.showMessageDialog(null, exception);
+                exception.printStackTrace();
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "The Lecturer Relation wasn't deleted");
+        }
     }//GEN-LAST:event_deleteBtn2ActionPerformed
 
     private void clearBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtn2ActionPerformed
         // TODO add your handling code here:
+        lCComboLId.setSelectedIndex(-1);
+        lCComboCId.setSelectedIndex(-1);
+        lCComboSId.setSelectedIndex(-1);
     }//GEN-LAST:event_clearBtn2ActionPerformed
 
     private void exitBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtn2ActionPerformed
@@ -1046,6 +1159,8 @@ public class AcademicMDashboard extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        
     }//GEN-LAST:event_sCComboSIdItemStateChanged
 
     /**
@@ -1138,10 +1253,8 @@ public class AcademicMDashboard extends javax.swing.JFrame {
     private javax.swing.JButton showUsersBtn1;
     private javax.swing.JButton showUsersBtn2;
     private javax.swing.JTable tableBD;
-    private javax.swing.JTable tableBD2;
+    private javax.swing.JTable tableLC;
     private javax.swing.JTable tableSC;
     private javax.swing.JButton updateBtn;
-    private javax.swing.JButton updateBtn1;
-    private javax.swing.JButton updateBtn2;
     // End of variables declaration//GEN-END:variables
 }

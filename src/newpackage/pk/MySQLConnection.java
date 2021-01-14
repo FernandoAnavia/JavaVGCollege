@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 public class MySQLConnection {
     
     
-    public static Connection getConnection() throws Exception {
+    protected static Connection getConnection() throws Exception {
         
     
     String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";

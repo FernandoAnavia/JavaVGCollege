@@ -6,7 +6,12 @@
 package newpackage.pk;
 
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -20,6 +25,8 @@ public class StDashboard extends javax.swing.JFrame {
     public StDashboard() {
         initComponents();
         scaleImage();
+        detailsPanel.setVisible(false);
+        tablePanel.setVisible(false);
         
         fullNameW.setText(LoginSesion.fullUserName);
         
@@ -45,13 +52,6 @@ public class StDashboard extends javax.swing.JFrame {
         ImageIcon scaleIcon3 = new ImageIcon(imgScale3);
         manageDegreeImage.setIcon(scaleIcon3);
         
-        
-        ImageIcon icon4 = new ImageIcon(getClass().getResource("/newpackage/pk/images/content.png"));
-        Image img4 = icon4.getImage();
-        Image imgScale4 = img4.getScaledInstance(manageCourseImage.getWidth(), manageCourseImage.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaleIcon4 = new ImageIcon(imgScale4);
-        manageCourseImage.setIcon(scaleIcon4);
-        
          
         
         
@@ -76,9 +76,32 @@ public class StDashboard extends javax.swing.JFrame {
         AttendanceButton = new javax.swing.JButton();
         manageBranchImage = new javax.swing.JLabel();
         manageDegreeImage = new javax.swing.JLabel();
-        ContentButton = new javax.swing.JButton();
-        manageCourseImage = new javax.swing.JLabel();
         GradesButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        detailsPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        degreeTitle = new javax.swing.JLabel();
+        userIdField = new javax.swing.JLabel();
+        firstNameField = new javax.swing.JLabel();
+        lastNameField = new javax.swing.JLabel();
+        emailField = new javax.swing.JLabel();
+        cNumberField = new javax.swing.JLabel();
+        dobField = new javax.swing.JLabel();
+        branchField = new javax.swing.JLabel();
+        degreeField = new javax.swing.JLabel();
+        addressField1 = new javax.swing.JLabel();
+        tablePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        totalLabel = new javax.swing.JLabel();
+        overAllLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +129,7 @@ public class StDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fullNameW, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addGap(40, 40, 40))
         );
@@ -126,27 +149,35 @@ public class StDashboard extends javax.swing.JFrame {
 
         ProfileButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         ProfileButton.setText("Profile");
+        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileButtonActionPerformed(evt);
+            }
+        });
 
         AttendanceButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         AttendanceButton.setText("Attendance");
-
-        ContentButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        ContentButton.setText("Program details");
+        AttendanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AttendanceButtonActionPerformed(evt);
+            }
+        });
 
         GradesButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         GradesButton.setText("Grades");
+        GradesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GradesButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(manageCourseImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(ContentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(manageDegreeImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -183,13 +214,199 @@ public class StDashboard extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(GradesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(manageDegreeImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(ContentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(manageCourseImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("User ID");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("First Name");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Last Name");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Email");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("C. Number");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Address");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("DOB");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Branch");
+
+        degreeTitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        degreeTitle.setText("Degree");
+
+        userIdField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        firstNameField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        lastNameField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        emailField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        cNumberField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        dobField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        branchField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        degreeField.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        addressField1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
+        detailsPanel.setLayout(detailsPanelLayout);
+        detailsPanelLayout.setHorizontalGroup(
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(detailsPanelLayout.createSequentialGroup()
+                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addGap(32, 32, 32)
+                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lastNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(userIdField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(firstNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(detailsPanelLayout.createSequentialGroup()
+                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8)
+                            .addComponent(degreeTitle))
+                        .addGap(32, 32, 32)
+                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addressField1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(dobField, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(branchField, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(degreeField, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        detailsPanelLayout.setVerticalGroup(
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(userIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(addressField1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(dobField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(branchField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(degreeTitle)
+                    .addComponent(degreeField, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(table);
+
+        totalLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totalLabel.setText("Overall Score");
+
+        overAllLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(overAllLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(overAllLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(detailsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(detailsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,14 +417,18 @@ public class StDashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -218,6 +439,255 @@ public class StDashboard extends javax.swing.JFrame {
         new LoginForm().setVisible(true);
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
+        // TODO add your handling code here:
+        
+        detailsPanel.setVisible(true);
+        tablePanel.setVisible(false);
+        
+        try (Connection conn = MySQLConnection.getConnection()){
+            
+                        
+            String details = "SELECT firstName,lastName,email,contactNumber,address,DOB,BranchId,DegreeId From vgccollege.Student where StudentId = ?";
+            PreparedStatement pst = conn.prepareStatement(details);
+            pst.setString(1, LoginSesion.UID);
+            ResultSet rsdetails = pst.executeQuery();
+            
+            while(rsdetails.next()){
+                
+                userIdField.setText(LoginSesion.UID);
+                firstNameField.setText(rsdetails.getString("firstName"));
+                lastNameField.setText(rsdetails.getString("lastName"));
+                emailField.setText(rsdetails.getString("email"));
+                cNumberField.setText(rsdetails.getString("contactNumber"));
+                addressField1.setText(rsdetails.getString("address"));
+                dobField.setText(rsdetails.getString("DOB"));
+                branchField.setText(rsdetails.getString("BranchId"));
+                degreeField.setText(rsdetails.getString("DegreeId"));
+   
+                
+            }
+            
+            
+        }catch (Exception exception) {
+            JOptionPane.showInternalMessageDialog(this, "Database failure");
+
+            
+        }
+        
+    }//GEN-LAST:event_ProfileButtonActionPerformed
+
+    private void AttendanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttendanceButtonActionPerformed
+        // TODO add your handling code here:
+        detailsPanel.setVisible(false);
+        tablePanel.setVisible(true);
+        
+                try (Connection conn = MySQLConnection.getConnection()){
+            
+            String Lect = "SELECT LecturerId From vgccollege.Lecturer";
+            PreparedStatement pstLect = conn.prepareStatement(Lect);
+            ResultSet rsLect = pstLect.executeQuery();
+       
+            while (rsLect.next()){
+                
+                String findTable1 = rsLect.getString("LecturerId");
+                
+            String Course = "SELECT CourseId From vgccollege.Course";
+            PreparedStatement pstCourse = conn.prepareStatement(Course);
+            ResultSet rsCourse = pstCourse.executeQuery();
+            
+                while (rsCourse.next()){
+                    
+                    String findTable2 = rsCourse.getString("CourseId");
+                    
+                    String Semester = "SELECT SemesterId From vgccollege.Semester";
+                    PreparedStatement pstSem = conn.prepareStatement(Semester);
+                    ResultSet rsSem = pstSem.executeQuery();
+                    
+                    
+                        while (rsSem.next()){
+                            
+                            String findTable3 = rsSem.getString("SemesterId");
+                            String finalFindTable = findTable1 + findTable2 + findTable3;
+                            System.out.println(finalFindTable);
+                    
+                            
+                            try {
+
+                            
+                            String St = LoginSesion.UID;
+                 
+                            String findAtt = "select C.courseName, G.Average, G.LecturerId, G.CourseId, G.SemesterId from vgccollege.attendance" + finalFindTable + " G, vgccollege.Course C where C.CourseId = G.CourseId and G.StudentId = ?";
+                            PreparedStatement pstAtt = conn.prepareStatement(findAtt);
+                            pstAtt.setString(1, St);
+                            ResultSet rsPrev = pstAtt.executeQuery();
+                            
+              
+                                while (rsPrev.next()){
+                                 
+                            String SubjectName = rsPrev.getString("courseName");
+                                    System.out.println(SubjectName);
+                            Float AverageF = rsPrev.getFloat("Average");
+                                    System.out.println(AverageF);
+                                                                
+                            String insertValues = "INSERT INTO vgccollege.Attendance" + "(StudentId, LecturerId, CourseId, SemesterId, Average)" + "VALUES (?,?,?,?,?)";
+                            PreparedStatement pstfinalTable = conn.prepareStatement(insertValues);
+                            
+                            pstfinalTable.setString(1, St);
+                            pstfinalTable.setString(2, rsPrev.getString("LecturerId"));
+                            pstfinalTable.setString(3, rsPrev.getString("CourseId"));
+                            pstfinalTable.setString(4, rsPrev.getString("SemesterId"));
+                            pstfinalTable.setFloat(5, AverageF);
+                            pstfinalTable.executeUpdate();
+                       
+                            }
+                                }catch(Exception e){
+            
+        }
+                            
+                            
+                        }
+                    
+                    
+                }
+                
+
+                            
+                            String Result = "Select C.courseName, S.sDescription, A.Average from vgccollege.Attendance A, vgccollege.Course C, vgccollege.Semester S where C.CourseId = A.CourseId and S.SemesterId = A.SemesterId and StudentId = ?";
+                            PreparedStatement pstResult = conn.prepareStatement(Result);
+                            pstResult.setString(1, LoginSesion.UID);
+                            ResultSet rs = pstResult.executeQuery();                          
+                            table.setModel(DbUtils.resultSetToTableModel(rs));
+                            
+                            String overallAv = "select AVg (average) from vgccollege.attendance where StudentId = ?";
+                            PreparedStatement pstOvAll = conn.prepareStatement(overallAv);
+                            pstOvAll.setString(1, LoginSesion.UID);
+                            ResultSet ROA = pstOvAll.executeQuery();
+                            
+                            while (ROA.next()){
+                                
+                                float A = ROA.getFloat(1);
+                                String B = Float.toString(A);
+                                overAllLabel.setText(B);
+            
+                            }
+                            
+            }
+            
+            
+        }catch (Exception exception) {
+            JOptionPane.showInternalMessageDialog(this, "Database failure");
+            
+            
+        }
+    }//GEN-LAST:event_AttendanceButtonActionPerformed
+
+    private void GradesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradesButtonActionPerformed
+        // TODO add your handling code here:
+        detailsPanel.setVisible(false);
+        tablePanel.setVisible(true);
+        
+                try (Connection conn = MySQLConnection.getConnection()){
+
+            
+            String Lect = "SELECT LecturerId From vgccollege.Lecturer";
+            PreparedStatement pstLect = conn.prepareStatement(Lect);
+            ResultSet rsLect = pstLect.executeQuery();
+       
+            while (rsLect.next()){
+                
+                String findTable1 = rsLect.getString("LecturerId");
+                
+            String Course = "SELECT CourseId From vgccollege.Course";
+            PreparedStatement pstCourse = conn.prepareStatement(Course);
+            ResultSet rsCourse = pstCourse.executeQuery();
+            
+                while (rsCourse.next()){
+                    
+                    String findTable2 = rsCourse.getString("CourseId");
+                    
+                    String Semester = "SELECT SemesterId From vgccollege.Semester";
+                    PreparedStatement pstSem = conn.prepareStatement(Semester);
+                    ResultSet rsSem = pstSem.executeQuery();
+                    
+                    
+                        while (rsSem.next()){
+                            
+                            String findTable3 = rsSem.getString("SemesterId");
+                            String finalFindTable = findTable1 + findTable2 + findTable3;
+                            System.out.println(finalFindTable);
+                    
+                            
+                            try {
+
+                            
+                            String St = LoginSesion.UID;
+                 
+                            String findAtt = "select C.courseName, G.Average, G.LecturerId, G.CourseId, G.SemesterId from vgccollege.grades" + finalFindTable + " G, vgccollege.Course C where C.CourseId = G.CourseId and G.StudentId = ?";
+                            PreparedStatement pstAtt = conn.prepareStatement(findAtt);
+                            pstAtt.setString(1, St);
+                            ResultSet rsPrev = pstAtt.executeQuery();
+                            
+              
+                                while (rsPrev.next()){
+                                 
+                            String SubjectName = rsPrev.getString("courseName");
+                                    System.out.println(SubjectName);
+                            Float AverageF = rsPrev.getFloat("Average");
+                                    System.out.println(AverageF);
+                                                                
+                            String insertValues = "INSERT INTO vgccollege.Grades" + "(StudentId, LecturerId, CourseId, SemesterId, Average)" + "VALUES (?,?,?,?,?)";
+                            PreparedStatement pstfinalTable = conn.prepareStatement(insertValues);
+                            
+                            pstfinalTable.setString(1, St);
+                            pstfinalTable.setString(2, rsPrev.getString("LecturerId"));
+                            pstfinalTable.setString(3, rsPrev.getString("CourseId"));
+                            pstfinalTable.setString(4, rsPrev.getString("SemesterId"));
+                            pstfinalTable.setFloat(5, AverageF);
+                            pstfinalTable.executeUpdate();
+                       
+                            }
+                                }catch(Exception e){
+            
+        }
+                            
+                            
+                        }
+                    
+                    
+                }
+                
+
+                            
+                            String Result = "Select C.courseName, S.sDescription, A.Average from vgccollege.Grades A, vgccollege.Course C, vgccollege.Semester S where C.CourseId = A.CourseId and S.SemesterId = A.SemesterId and StudentId = ?";
+                            PreparedStatement pstResult = conn.prepareStatement(Result);
+                            pstResult.setString(1, LoginSesion.UID);
+                            ResultSet rs = pstResult.executeQuery();                          
+                            table.setModel(DbUtils.resultSetToTableModel(rs));
+                            
+                            String overallAv = "select AVg (average) from vgccollege.Grades where StudentId = ?";
+                            PreparedStatement pstOvAll = conn.prepareStatement(overallAv);
+                            pstOvAll.setString(1, LoginSesion.UID);
+                            ResultSet ROA = pstOvAll.executeQuery();
+                            
+                            while (ROA.next()){
+                                
+                                float A = ROA.getFloat(1);
+                                String B = Float.toString(A);
+                                overAllLabel.setText(B);
+            
+                            }
+                            
+            }
+            
+            
+        }catch (Exception exception) {
+            JOptionPane.showInternalMessageDialog(this, "Database failure");
+            
+            
+        }
+    }//GEN-LAST:event_GradesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,17 +733,40 @@ public class StDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AttendanceButton;
-    private javax.swing.JButton ContentButton;
     private javax.swing.JButton GradesButton;
     private javax.swing.JButton ProfileButton;
+    private javax.swing.JLabel addressField1;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel branchField;
+    private javax.swing.JLabel cNumberField;
+    private javax.swing.JLabel degreeField;
+    private javax.swing.JLabel degreeTitle;
+    private javax.swing.JPanel detailsPanel;
+    private javax.swing.JLabel dobField;
+    private javax.swing.JLabel emailField;
+    private javax.swing.JLabel firstNameField;
     private javax.swing.JLabel fullNameW;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lastNameField;
     private javax.swing.JLabel manageBranchImage;
-    private javax.swing.JLabel manageCourseImage;
     private javax.swing.JLabel manageDegreeImage;
     private javax.swing.JLabel manageUserImage;
+    private javax.swing.JLabel overAllLabel;
+    private javax.swing.JTable table;
+    private javax.swing.JPanel tablePanel;
+    private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel userIdField;
     // End of variables declaration//GEN-END:variables
 }

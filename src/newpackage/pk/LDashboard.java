@@ -6,7 +6,10 @@
 package newpackage.pk;
 
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +23,30 @@ public class LDashboard extends javax.swing.JFrame {
     public LDashboard() {
         initComponents();
         scaleImage();
+        concatValues();
         
         fullNameW.setText(LoginSesion.fullUserName);
+        
+    }
+    
+        private void concatValues(){
+        
+        try {
+           String ConcVS = "UPDATE vgccollege.StudentCourse SET concatValue = concat(CourseId,SemesterId)";
+           String ConcVL = "UPDATE vgccollege.LecturerCourse SET concatValue = concat(CourseId,SemesterId)";
+            
+            Connection conn = MySQLConnection.getConnection();
+                      
+            PreparedStatement pstS = conn.prepareStatement(ConcVS);
+            PreparedStatement pstL = conn.prepareStatement(ConcVL);
+            
+            pstS.executeUpdate();
+            pstL.executeUpdate();
+            
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
         
     }
     
@@ -37,15 +62,7 @@ public class LDashboard extends javax.swing.JFrame {
         Image imgScale2 = img2.getScaledInstance(manageBranchImage.getWidth(), manageBranchImage.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaleIcon2 = new ImageIcon(imgScale2);
         manageBranchImage.setIcon(scaleIcon2);
-        
-        
-        ImageIcon icon3 = new ImageIcon(getClass().getResource("/newpackage/pk/images/exams.jpg"));
-        Image img3 = icon3.getImage();
-        Image imgScale3 = img3.getScaledInstance(manageDegreeImage.getWidth(), manageDegreeImage.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaleIcon3 = new ImageIcon(imgScale3);
-        manageDegreeImage.setIcon(scaleIcon3);
-        
-        
+
         
     }
 
@@ -58,17 +75,19 @@ public class LDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ExamsButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         fullNameW = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         AttendanceButton = new javax.swing.JButton();
-        manageUserImage = new javax.swing.JLabel();
         AssigmentsButton = new javax.swing.JButton();
         manageBranchImage = new javax.swing.JLabel();
-        manageDegreeImage = new javax.swing.JLabel();
-        ExamsButton = new javax.swing.JButton();
+        manageUserImage = new javax.swing.JLabel();
+
+        ExamsButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        ExamsButton1.setText("Lecturer Management");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +115,7 @@ public class LDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fullNameW, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 477, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addGap(40, 40, 40))
         );
@@ -116,62 +135,50 @@ public class LDashboard extends javax.swing.JFrame {
 
         AttendanceButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         AttendanceButton.setText("Attendance");
+        AttendanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AttendanceButtonActionPerformed(evt);
+            }
+        });
 
         AssigmentsButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        AssigmentsButton.setText("Assigments");
+        AssigmentsButton.setText("Assigments / Exams");
         AssigmentsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AssigmentsButtonActionPerformed(evt);
             }
         });
 
-        ExamsButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        ExamsButton.setText("Exams");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(manageDegreeImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(ExamsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(manageBranchImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(AssigmentsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(manageUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(AttendanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29))
+                    .addComponent(manageBranchImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageUserImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(AssigmentsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AttendanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(288, 288, 288))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(AttendanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(manageUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(manageBranchImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(manageUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(AssigmentsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(manageBranchImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(ExamsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(manageDegreeImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63))
+                        .addGap(50, 50, 50)
+                        .addComponent(AttendanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)
+                        .addComponent(AssigmentsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,8 +196,7 @@ public class LDashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,7 +209,13 @@ public class LDashboard extends javax.swing.JFrame {
 
     private void AssigmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssigmentsButtonActionPerformed
         // TODO add your handling code here:
+        new AssignmentExam().setVisible(true);
     }//GEN-LAST:event_AssigmentsButtonActionPerformed
+
+    private void AttendanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AttendanceButtonActionPerformed
+        // TODO add your handling code here:
+        new Attendance().setVisible(true);
+    }//GEN-LAST:event_AttendanceButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,14 +262,13 @@ public class LDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AssigmentsButton;
     private javax.swing.JButton AttendanceButton;
-    private javax.swing.JButton ExamsButton;
+    private javax.swing.JButton ExamsButton1;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel fullNameW;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel manageBranchImage;
-    private javax.swing.JLabel manageDegreeImage;
     private javax.swing.JLabel manageUserImage;
     // End of variables declaration//GEN-END:variables
 }
