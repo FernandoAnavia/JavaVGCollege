@@ -24,7 +24,7 @@ public class MySQLConnection {
     String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     String DB_URL = "jdbc:mysql://localhost/vgccollege?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String USER = "root";
-    String PASS = "F3rn4nd0An4v142019";
+    String PASS = "xxxxxx";
     
              
     Class.forName(JDBC_DRIVER);
